@@ -3,12 +3,12 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 
-public class BasicEnemy extends GameObject{
+public class PlBullet extends GameObject{
 
 	private Handler handler;
 	private GameObject player;
 	
-	public BasicEnemy(float x,float y,ID id, Handler handler){
+	public PlBullet(float x,float y,ID id, Handler handler){
 		super(x, y, id);
 		this.handler = handler;		
 		for(int i = 0; i < handler.object.size(); i++){

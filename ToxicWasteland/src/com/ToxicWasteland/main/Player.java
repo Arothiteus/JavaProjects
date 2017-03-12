@@ -9,6 +9,7 @@ public class Player extends GameObject {
 	
 	Random r = new Random();
 	Handler handler;
+		
 	
 	public Player(int x,int y,ID id, Handler handler){
 		super(x, y, id);
@@ -17,7 +18,7 @@ public class Player extends GameObject {
 	}
 	
 	public Rectangle getBounds(){
-		return new Rectangle(x, y, 32, 32);
+		return new Rectangle((int)x, (int)y, 32, 32);
 	}
 		
 	
@@ -25,11 +26,8 @@ public class Player extends GameObject {
 		x += velX;
 		y += velY;
 		
-		x = Game.clamp(x, 0, Game.WIDTH - 38);
-		y = Game.clamp(y, 0, Game.HEIGHT - 60);
-		//if(y <= 0 || y >= Game.HEIGHT - 32) velY *= -1;
-		//if(x <= 0 || x >= Game.WIDTH - 16) velX *= -1;
-		
+		x = Game.clamp((int)x, 0, Game.WIDTH - 38);
+		y = Game.clamp((int)y, 0, Game.HEIGHT - 60);		
 		collision();
 	}
 	
@@ -38,16 +36,17 @@ public class Player extends GameObject {
 			GameObject tempObject = handler.object.get(i);
 			if(tempObject.getId() == ID.BasicEnemy){
 				if(getBounds().intersects(tempObject.getBounds())){
-					HUD.HEALTH -= 3;
+					HUD.HEALTH -= 3;								
+				
 				}
-				else if(tempObject.getId() == ID.FatEnemy){
+			}
+				if(tempObject.getId() == ID.FatEnemy){
 					if(getBounds().intersects(tempObject.getBounds())){
-						HUD.HEALTH -= 5;					
+						HUD.HEALTH -= 6;
 				}
 			}
 		}
 	}
-}
 
 	
 	
@@ -59,7 +58,7 @@ public class Player extends GameObject {
 			
 		
 		//g.setColor(Color.white);
-		g.fillRect(x, y, 32, 32);
+		g.fillRect((int)x, (int)y, 32, 32);
 	}
 
 }
